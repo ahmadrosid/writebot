@@ -22,7 +22,6 @@
 
         </style>
 
-        <script src="https://unpkg.com/alpinejs" defer></script>
         <script src="https://unpkg.com/marked" defer></script>
 
     </head>
@@ -34,23 +33,11 @@
                 </div>
 
                 <div class="w-full rounded-md bg-white border-2 border-gray-600 p-4 min-h-[60px] h-full text-gray-600">
-                    <div x-data="{ content: '' }"  class="flex justify-between items-center">
-                        <div 
-                            class="title font-bold text-2xl outline-none text-gray-700 w-full"
-                            data-placeholder="Type your title..."
-                            x-ref="content" 
-                            contenteditable="true"
-                            spellcheck="false"
-                            @input="content = $event.target.textContent" x-init="content = $el.textContent">
-                            {{ $title }}
-                        </div>
-
-                        <form action="/write/generate" method="post">
-                            @csrf
-                            <input required name="title" x-model="content" style="display: none;" />
-                            <button class="rounded-md bg-emerald-500 px-4 py-2 text-white font-semibold">Generate</button>
-                        </form>
-                    </div>
+                    <form action="/write/generate" method="post" class="inline-flex gap-2 w-full">
+                        @csrf
+                        <input required name="title" class="w-full outline-none text-2xl font-bold" placeholder="Type your article title..." />
+                        <button class="rounded-md bg-emerald-500 px-4 py-2 text-white font-semibold">Generate</button>
+                    </form>
                 </div>
                 <div class="w-full rounded-md bg-white border-2 border-gray-600 p-4 min-h-[720px] h-full text-gray-600">
                     <textarea class="min-h-[720px] h-full w-full outline-none" spellcheck="false">{{ $content }}</textarea>

@@ -15,7 +15,7 @@ class ArticleGenerator extends Controller
 
         $title = $input->title;
 
-        $client = OpenAI::client(env('OPENAI_API_KEY'));
+        $client = OpenAI::client(config('app.openai_api_key'));
         
         $result = $client->completions()->create([
             "model" => "text-davinci-003",
